@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import { Mobile, PC } from "../shared/MediaQuery";
 import { useState } from "react";
 import Modal from "../components/Hyozaparent/Modal";
+import { useNavigate } from "react-router-dom";
 
 const text = "어떤 도움이 필요하신가요?\n아래 버튼을 선택해주세요!";
 
@@ -54,18 +55,18 @@ const TextBox = styled.div`
 `;
 
 const Hyozaparent = () => {
+  const navigate = useNavigate();
+
   const [isTaxiModalOpen, setIsTaxiModalOpen] = useState(false);
   const [isBusModalOpen, setIsBusModalOpen] = useState(false);
   const [isTrainModalOpen, setIsTrainModalOpen] = useState(false);
 
   const openTaxiModal = () => setIsTaxiModalOpen(true);
-  const closeTaxiModal = () => setIsTaxiModalOpen(false);
-
+  const closeModal = () => {
+    navigate("/hyozaparent/loading");
+  };
   const openBusModal = () => setIsBusModalOpen(true);
-  const closeBusModal = () => setIsBusModalOpen(false);
-
   const openTrainModal = () => setIsTrainModalOpen(true);
-  const closeTrainModal = () => setIsTrainModalOpen(false);
 
   return (
     <>
@@ -77,7 +78,7 @@ const Hyozaparent = () => {
           </Btn>
           <Modal
             isOpen={isTaxiModalOpen}
-            closeModal={closeTaxiModal}
+            closeModal={closeModal}
             content="택시 예약"
           />
           <Btn onClick={openBusModal} btnWidth="70vw" btnHeight="20vh">
@@ -85,7 +86,7 @@ const Hyozaparent = () => {
           </Btn>
           <Modal
             isOpen={isBusModalOpen}
-            closeModal={closeBusModal}
+            closeModal={closeModal}
             content="버스 예매"
           />
           <Btn onClick={openTrainModal} btnWidth="70vw" btnHeight="20vh">
@@ -93,7 +94,7 @@ const Hyozaparent = () => {
           </Btn>
           <Modal
             isOpen={isTrainModalOpen}
-            closeModal={closeTrainModal}
+            closeModal={closeModal}
             content="기차 예매"
           />
         </Wrapper>
@@ -107,7 +108,7 @@ const Hyozaparent = () => {
             </Btn>
             <Modal
               isOpen={isTaxiModalOpen}
-              closeModal={closeTaxiModal}
+              closeModal={closeModal}
               content="택시 예약"
             />
             <Btn onClick={openBusModal} btnWidth="20vw" btnHeight="40vh">
@@ -115,7 +116,7 @@ const Hyozaparent = () => {
             </Btn>
             <Modal
               isOpen={isBusModalOpen}
-              closeModal={closeBusModal}
+              closeModal={closeModal}
               content="버스 예매"
             />
             <Btn onClick={openTrainModal} btnWidth="20vw" btnHeight="40vh">
@@ -123,7 +124,7 @@ const Hyozaparent = () => {
             </Btn>
             <Modal
               isOpen={isTrainModalOpen}
-              closeModal={closeTrainModal}
+              closeModal={closeModal}
               content="기차 예매"
             />
           </Container>
