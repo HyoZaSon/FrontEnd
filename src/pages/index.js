@@ -5,5 +5,7 @@ import Hyozason from "./Hyozason";
 import Detail from "./Detail";
 import Hyozaparent from "./Hyozaparent";
 import Evaluation from "./Evaluation";
+import Loading from "./Loading";
 
-export { Main, Login, Register, Hyozason, Detail, Hyozaparent, Evaluation }
+
+export { Main, Login, Register, Hyozason, Detail, Hyozaparent, Evaluation, Loading }
