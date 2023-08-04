@@ -1,16 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Hyozason = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Title>00구의 도움 요청서</Title>
       <ButtonContainer>
-        <Button>택시 예약</Button>
-        <Button>버스 예약</Button>
-        <Button>기차 예약</Button>
-        <Button>버스 예약</Button>
-        <Button>택시 예약</Button>
-        <Button>기차 예약</Button>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>택시 예약</Button>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>버스 예약</Button>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>기차 예약</Button>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>버스 예약</Button>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>택시 예약</Button>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>기차 예약</Button>
       </ButtonContainer>
     </>
   );
