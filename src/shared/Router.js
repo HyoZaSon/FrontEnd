@@ -12,7 +12,7 @@ const Router = () => {
         <Route path="/hyozason/:helpId" element={<Detail />} />
         <Route path="/hyozaparent" element={<Hyozaparent />} />
         <Route path="/hyozaparent/loading" element={<Loading />} />
-        <Route path="hyozaparent/evaluation" element={<Evaluation />} />
+        <Route path="/hyozaparent/evaluation" element={<Evaluation />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
