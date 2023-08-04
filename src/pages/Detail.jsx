@@ -1,7 +1,21 @@
+import { useState } from "react";
 import MapImg from "../img/map.png";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Detail = () => {
+  const [modal, setModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleAccept = () => {
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+    navigate("/hyozason");
+  };
+
   return (
     <Wrapper>
       <Container>
@@ -11,8 +25,25 @@ const Detail = () => {
         </TitleContainer>
 
         <Image src={MapImg} alt="map" />
-        <Button>수락</Button>
+        <Button onClick={handleAccept}>수락</Button>
       </Container>
+      {modal && (
+        <Modal>
+          <ModalContent>
+            <ModalText>
+              <p style={{ color: "#519872", textDecorationLine: "underline" }}>
+                택시예약
+              </p>
+              도움 요청을 수락했습니다!
+              <br />
+              요청한 사람의 연락처가
+              <br />
+              문자로 전송될 예정입니다.
+            </ModalText>
+            <CloseButton onClick={closeModal}>닫기</CloseButton>
+          </ModalContent>
+        </Modal>
+      )}
     </Wrapper>
   );
 };
@@ -61,6 +92,44 @@ const Button = styled.button`
   border: none;
   border-radius: 10px;
   margin-top: 25px;
+`;
+
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = styled.div`
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+`;
+
+const ModalText = styled.p`
+  font-size: 18px;
+  margin-bottom: 40px;
+`;
+
+const CloseButton = styled.button`
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #519872;
+  color: white;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 `;
 
 export default Detail;
