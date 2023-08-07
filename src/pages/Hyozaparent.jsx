@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 30px;
+  margin-top: 30px;
 `;
 
 const HeadBox = styled.div`
