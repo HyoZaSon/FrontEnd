@@ -9,6 +9,7 @@ body {
   font-weight: 400;
   line-height: normal;
   line-height: 1.2;
+  overflow: hidden;
 }
 a {
   text-decoration: none;
