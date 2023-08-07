@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ARRAY = [0, 1, 2, 3, 4];
@@ -60,7 +61,6 @@ const Btn = styled.button`
 
 const Evaluation = () => {
   const [clicked, setClicked] = useState([false, false, false, false, false]);
-
   // 별 클릭하는 함수
   const handleStarClick = (index) => {
     let clickStates = [...clicked];
@@ -75,9 +75,13 @@ const Evaluation = () => {
     sendReview();
   }, [clicked]);
 
+  const navigate = useNavigate();
   const sendReview = () => {
     let score = clicked.filter(Boolean).length;
     console.log(score);
+  };
+  const onClick = () => {
+    navigate("/");
   };
 
   return (
@@ -97,7 +101,7 @@ const Evaluation = () => {
             );
           })}
         </Stars>
-        <Btn>평가하기</Btn>
+        <Btn onClick={onClick}>평가하기</Btn>
       </Container>
     </Wrapper>
   );
