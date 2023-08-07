@@ -5,7 +5,7 @@ import styled from "styled-components";
 const ARRAY = [0, 1, 2, 3, 4];
 
 const Wrapper = styled.div`
-  height: 100vh;
+  height: 95vh;
   align-items: center;
   justify-content: center;
   display: flex;
