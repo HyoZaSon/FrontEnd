@@ -3,6 +3,9 @@ import { Mobile, PC } from "../shared/MediaQuery";
 import { useState } from "react";
 import Modal from "../components/Hyozaparent/Modal";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const { kakao } = window;
 
 const text = "어떤 도움이 필요하신가요?\n아래 버튼을 선택해주세요!";
 
@@ -55,6 +58,36 @@ const TextBox = styled.div`
   font-size: ${(props) => props.fontSize};
 `;
 
+// 가져오기 성공
+function getSuccess(position) {
+  let x = position.coords.longitude;
+  let y = position.coords.latitude;
+  if (x && y) {
+    axios
+      .get(
+        `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${x}&y=${y}`,
+        {
+          headers: {
+            Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_API_KEY}`,
+          },
+        }
+      )
+      .then((result) => {
+        //법정동 기준으로 동단위의 값을 가져온다
+        //let location = result.documents[0].region_3depth_name;
+        console.log(result.request.response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+}
+
+// 가지오기 실패(거부)
+function getError() {
+  alert("Geolocation Error");
+}
+
 const Hyozaparent = () => {
   const navigate = useNavigate();
 
@@ -64,6 +97,7 @@ const Hyozaparent = () => {
 
   const openTaxiModal = () => setIsTaxiModalOpen(true);
   const closeModal = () => {
+    navigator.geolocation.getCurrentPosition(getSuccess, getError);
     navigate("/hyozaparent/loading");
   };
   const openBusModal = () => setIsBusModalOpen(true);
