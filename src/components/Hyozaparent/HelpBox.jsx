@@ -84,6 +84,7 @@ const HelpBox = ({
           btnWidth={btnWidth}
           btnHeight={btnHeight}
           TfontSize={TfontSize}
+          content="택시 예약"
         />
         <HelpBtn
           openModal={openBusModal}
@@ -92,6 +93,7 @@ const HelpBox = ({
           btnWidth={btnWidth}
           btnHeight={btnHeight}
           TfontSize={TfontSize}
+          content="버스 예매"
         />
         <HelpBtn
           openModal={openTrainModal}
@@ -100,6 +102,7 @@ const HelpBox = ({
           btnWidth={btnWidth}
           btnHeight={btnHeight}
           TfontSize={TfontSize}
+          content="기차 예매"
         />
       </Container>
     </>

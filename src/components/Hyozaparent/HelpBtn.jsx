@@ -31,13 +31,19 @@ const HelpBtn = ({
   btnWidth,
   btnHeight,
   TfontSize,
+  content,
 }) => {
   return (
     <>
       <Btn onClick={openModal} btnWidth={btnWidth} btnHeight={btnHeight}>
-        <TextBox TfontSize={TfontSize}>택시 예약</TextBox>
+        <TextBox TfontSize={TfontSize}>{content}</TextBox>
       </Btn>
-      <Modal isOpen={isModalOpen} closeModal={closeModal} content="택시 예약" />
+      <Modal
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+        content={content}
+        isHelpLoading={true}
+      />
     </>
   );
 };
