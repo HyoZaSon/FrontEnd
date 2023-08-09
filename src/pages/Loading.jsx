@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 import LoadingSrc from "../img/loading.gif";
 import { useEffect, useState } from "react";
-import Connect from "../components/Hyozaparent/Connect";
 import { useNavigate } from "react-router-dom";
+import Modal from "../components/Hyozaparent/Modal";
 
 const Wrapper = styled.div`
   align-items: center;
@@ -46,7 +46,11 @@ const Loading = () => {
         <Container>
           <LoadingImg src={LoadingSrc} />
           <TextBox>도움을 줄 효자손을 찾는 중입니다!</TextBox>
-          <Connect isOpen={visible} closeModal={closeModal} />
+          <Modal
+            isOpen={visible}
+            closeModal={closeModal}
+            isHelpLoading={false}
+          />
         </Container>
       </Wrapper>
     </>

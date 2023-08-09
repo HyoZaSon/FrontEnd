@@ -1,4 +1,6 @@
 import { styled } from "styled-components";
+import ModalHelp from "./ModalHelp";
+import ModalLoading from "./ModalLoading";
 
 const ModalContainer = styled.div`
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
@@ -19,16 +21,13 @@ const ModalBox = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 65vw;
-  height: 15vh;
-  overflow-y: auto;
+  overflow-y: hidden;
   background-color: white;
 `;
 
 const ModalText = styled.div`
   padding: 10px;
   color: #000;
-  //text-decoration-line: underline;
-  //white-space: pre-line;
   line-height: 0.5em;
 `;
 
@@ -40,19 +39,15 @@ const ModalBtn = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
-  margin-top: 5px;
 `;
 
-function Modal({ isOpen, closeModal, content }) {
+function Modal({ isOpen, closeModal, content, isHelpLoading }) {
   return (
     <ModalContainer isOpen={isOpen}>
       <ModalBackground />
       <ModalBox>
         <ModalText>
-          <p style={{ color: "#519872", textDecorationLine: "underline" }}>
-            {content}
-          </p>
-          <p>도움 요청이 완료되었습니다.</p>
+          {isHelpLoading ? <ModalHelp content={content} /> : <ModalLoading />}
         </ModalText>
         <ModalBtn onClick={closeModal}>확인</ModalBtn>
       </ModalBox>
