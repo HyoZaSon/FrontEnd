@@ -36,7 +36,6 @@ const PCContainer = styled(Container)`
 const Title = styled.p`
   font-size: 36px; /* 크기 조정 */
   font-family: Inter;
-  font-family: Inter;
   text-align: center;
 `;
 
