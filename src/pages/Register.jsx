@@ -1,29 +1,40 @@
 import React from "react";
 import styled from "styled-components";
 import { Mobile, PC } from "../shared/MediaQuery";
-import GlobalStyle from "../shared/GlobalStyle"; 
+import GlobalStyle from "../shared/GlobalStyle";
 
 // 배경을 포함한 컨테이너 스타일
 const Container = styled.div`
-  width: 390px; // 너비 설정
-  height: 844px; // 높이 설정
+  width: 100vw; /* 화면 전체 너비 */ 
+  height: 100vh; /* 화면 전체 높이 *
   overflow: hidden;
   background-color: #E7F59E; // 배경 색상 설정
   align-items: center; // 가운데 정렬
   justify-content: center; // 가운데 정렬
   display: flex; // 컨테이너 안의 컨텐츠를 가운데 정렬하기 위해 flex 사용
   position: absolute;
-  top: 50%; // 화면 중앙에서 위로 50%만큼 올림
-  transform: translateY(-60%); // 중앙 정렬을 위해 위치 조정
+
+  ${Mobile} {
+    @media (max-width: 768px)
+      transform: translateX(-20%);
+    }
+  }
+
+  ${PC} {
+    @media (min-width: 768px) { /* 모바일 화면 크기 이하에서는 적용하지 않음 */
+      left: 50%;
+      transform: translateX(40%);
+    }
+  }
+  
 `;
 
 // 타이틀 스타일 //타이틀 글씨
 const Title = styled.span`
   color: rgba(0, 0, 0, 1);
-  width: 390px;
-  height: 107px;
+  height: 390px;
   position: absolute;
-  left: 5px;
+  left: 60px;
   top: 183px;
   font-family: Inter;
   text-align: center;
@@ -32,8 +43,6 @@ const Title = styled.span`
 
 // 옵션 래퍼 스타일 //선택,지역선택
 const OptionWrapper = styled.div`
-  width: 235px;
-  height: 70px;
   position: absolute;
   left: 33px;
   top: 446px;
@@ -58,7 +67,6 @@ const SelectBox = styled.div`
   top: 34px;
   border-radius: 10px;
 `;
-
 
 // 선택 텍스트 스타일 //연한회색컬러
 const SelectText = styled.span`
@@ -88,25 +96,25 @@ const OptionTitle = styled.span`
 
 // 역할 래퍼 스타일
 const RoleWrapper = styled.div`
-  width: 321px;
+  width: 100vw; /* 화면 전체 너비 */
   height: 66px;
   position: absolute;
   left: 33px;
   top: 348px;
+  
 `;
 
 // 역할 타이틀 스타일 //역할선택
 const RoleTitle = styled.span`
-color: rgba(0, 0, 0, 1);
-width: 118px;
-height: 20px;
-position: absolute;
-left: 6px;
-top: -35px; /* 위로 이동 */
-font-family: Inter;
-text-align: left;
-font-size: 16px;
-z-index: 1; /* 층위 조정 */
+  color: rgba(0, 0, 0, 1);
+  width: 100vw; /* 화면 전체 너비 */
+  height: 20px;
+  position: absolute;
+  top: -35px; /* 위로 이동 */
+  font-family: Inter;
+  text-align: left;
+  font-size: 16px;
+  z-index: 1; /* 층위 조정 */
 `;
 
 // 역할 도움주기 버튼 스타일
@@ -140,7 +148,6 @@ const RoleText = styled.span`
   text-align: left;
   font-size: 14px;
 `;
-
 
 // 완료 래퍼, 버튼 스타일
 const CompleteWrapper = styled.div`
@@ -205,7 +212,6 @@ const Register = () => {
       <GlobalStyle />
       
       <Title>효자손을 사용하기 전에<br />본인의 역할과 지역을<br />선택해주세요.</Title>
-
       <OptionWrapper>
         <SelectWrapper>
           <SelectBox>
@@ -215,7 +221,7 @@ const Register = () => {
         </SelectWrapper>
       </OptionWrapper>
 
-      <RoleWrapper>
+      <RoleWrapper >
         <RoleOption>
             <RoleText>도움을 주고 싶습니다</RoleText>
         </RoleOption>
@@ -228,9 +234,9 @@ const Register = () => {
       <CompleteWrapper>
         <CompleteText>회원가입 완료</CompleteText>
       </CompleteWrapper>
-      </PC>
 
-    </Container>
+      </PC>
+      </Container>
   );
 };
 
