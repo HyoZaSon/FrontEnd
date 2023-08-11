@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./Header";
-import { Detail, Evaluation, Hyozaparent, Hyozason, Loading, Login, Main, Register } from "../pages";
+import { Detail, Evaluation, Hyozaparent, Hyozason, Loading, Login, LoginLoading, Main, Register } from "../pages";
 
 const Router = () => {
   return (
@@ -8,6 +8,7 @@ const Router = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/help/oauth" element={<LoginLoading />} />
         <Route path="/hyozason" element={<Hyozason />} />
         <Route path="/hyozason/:helpId" element={<Detail />} />
         <Route path="/hyozaparent" element={<Hyozaparent />} />

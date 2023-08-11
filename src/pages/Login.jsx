@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import LoginBasicImage from "../components/LoginBasic.jpg"; // 첫 번째 버튼 이미지 파일 경로를 import
 import LoginOtherImage from "../components/LoginOther.jpg"; // 두 번째 버튼 이미지 파일 경로를 import
-import GlobalStyle from "../shared/GlobalStyle"; 
-import { Mobile, PC } from "../shared/MediaQuery"; 
+import GlobalStyle from "../shared/GlobalStyle";
+import { Mobile, PC } from "../shared/MediaQuery";
+
+const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}&response_type=code`;
 
 // 배경을 포함한 컨테이너 스타일
 const Container = styled.div`
@@ -30,8 +32,7 @@ const MobileContainer = styled(Container)`
 `;
 
 //PC스타일 필요하면
-const PCContainer = styled(Container)`
-`;
+const PCContainer = styled(Container)``;
 
 const Title = styled.p`
   font-size: 36px; /* 크기 조정 */
@@ -80,28 +81,30 @@ const OtherButton = styled(Button)`
 const LoginButton = () => {
   return (
     <Container>
-    
       <ButtonContainer>
         <Mobile>
           <GlobalStyle /> {/* 글로벌 스타일 적용 */}
-          <MobileContainer> {/* 모바일 화면에서만 적용 */}
-          <Title>효자손</Title>
-          <Statement>로그인 후 서비스를 이용하실 수 있습니다</Statement> {/* 크기 조정된 문장 */}
-          <BasicButton /> {/* 첫 번째 버튼 */}
-          <OtherButton /> {/* 두 번째 버튼 */}
+          <MobileContainer>
+            {" "}
+            {/* 모바일 화면에서만 적용 */}
+            <Title>효자손</Title>
+            <Statement>로그인 후 서비스를 이용하실 수 있습니다</Statement>{" "}
+            {/* 크기 조정된 문장 */}
+            <BasicButton onClick={() => window.open(KAKAO_AUTH_URL)} />{" "}
+            {/* 첫 번째 버튼 */}
+            <OtherButton /> {/* 두 번째 버튼 */}
           </MobileContainer>
         </Mobile>
-
 
         <PC>
           {/* PC 버전*/}
           <GlobalStyle /> {/* 글로벌 스타일 적용 */}
-              <Title>효자손</Title>
-              <Statement>로그인 후 서비스를 이용하실 수 있습니다</Statement>
-              <BasicButton /> {/* 첫 번째 버튼 */}
-              <OtherButton /> {/* 두 번째 버튼 */}
+          <Title>효자손</Title>
+          <Statement>로그인 후 서비스를 이용하실 수 있습니다</Statement>
+          <BasicButton onClick={() => window.open(KAKAO_AUTH_URL)} />{" "}
+          {/* 첫 번째 버튼 */}
+          <OtherButton /> {/* 두 번째 버튼 */}
         </PC>
-
       </ButtonContainer>
     </Container>
   );
