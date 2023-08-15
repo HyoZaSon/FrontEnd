@@ -11,6 +11,8 @@ const Container = styled.div`
 
 const PhoneInput = styled.input`
   width: 200px;
+  height: 30px;
+  line-height: 30px;
   border: 2px solid #519872;
   border-radius: 5px;
   margin-top: 10px;
@@ -52,7 +54,7 @@ const PhoneNumber = () => {
     <Container>
       <span style={{ textAlign: "left" }}>전화번호 입력</span>
       <PhoneInput
-        type="tel"
+        type="text"
         value={phoneNumber}
         onChange={handlePhoneInput}
         placeholder="전화번호 입력"
