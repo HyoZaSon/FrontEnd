@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../img/logo.svg";
+import axios from "axios";
 
 const Wrapper = styled.header`
   background-color: rgba(252, 251, 251, 0.8);
@@ -47,23 +48,76 @@ const Navigation = styled.nav`
   ul {
     display: flex;
     list-style: none;
+    li + li {
+      margin-left: 30px;
+    }
   }
+`;
+
+const Button = styled.button`
+  border: none;
+  background-color: transparent;
+  margin-left: 10px;
 `;
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const onClick = () => {
+    if (location.pathname === "/hyozason") {
+      navigate("/hyozason");
+    } else {
+      navigate("/hyozaparent");
+    }
+  };
+
+  const onClickLogout = () => {
+    axios
+      .get("/user/logout", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        localStorage.clear();
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Wrapper>
       <Contents>
-        <Logo onClick={() => navigate("/")}>
+        <Logo onClick={onClick}>
           <LogoImg src={logo} />
           <LogoTxt>효자손</LogoTxt>
         </Logo>
 
         <Navigation>
           <ul>
-            <li>이혜영</li>
+            {localStorage.getItem("accessToken") !== null ? (
+              location.pathname === "/hyozason" ? (
+                <>
+                  <li>{localStorage.getItem("nickName")}</li>
+                  <li>{localStorage.getItem("reward")}P</li>
+                  <li>
+                    <Button onClick={onClickLogout}>로그아웃</Button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>{localStorage.getItem("nickName")}</li>
+
+                  <li>
+                    <Button onClick={onClickLogout}>로그아웃</Button>
+                  </li>
+                </>
+              )
+            ) : null}
           </ul>
         </Navigation>
       </Contents>
