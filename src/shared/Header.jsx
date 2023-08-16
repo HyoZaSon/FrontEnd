@@ -99,8 +99,7 @@ const Header = () => {
 
         <Navigation>
           <ul>
-            {localStorage.getItem("accessToken") === undefined}
-            {localStorage.getItem("accessToken") === undefined ? (
+            {localStorage.getItem("accessToken") !== undefined ? (
               location.pathname === "/hyozason" ? (
                 <>
                   <li>{localStorage.getItem("nickName")}</li>
