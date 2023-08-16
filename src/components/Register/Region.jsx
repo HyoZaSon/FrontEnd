@@ -37,7 +37,9 @@ const Region = ({ prop, role }) => {
       >
         <option>구 선택</option>
         {Regions[initial].map((region, idx) => (
-          <option key={idx}>{region}</option>
+          <option key={idx} value={region}>
+            {region}
+          </option>
         ))}
       </Select>
     </>

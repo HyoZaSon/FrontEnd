@@ -4,6 +4,7 @@ import { Mobile, PC } from "../shared/MediaQuery";
 import PhoneNumber from "../components/Register/PhoneNumber";
 import Region from "../components/Register/Region";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const text = `효자손을 사용하기 전에\n 본인의 역할과 지역을\n 선택해주세요.`;
 
@@ -90,6 +91,8 @@ const SubmitBtn = styled.button`
   font-size: 20px;
 `;
 
+const idToken = localStorage.getItem("idToken");
+
 const Register = () => {
   const [role, setRole] = useState("HELPER");
   const [region, setRegion] = useState("선택");
@@ -102,20 +105,32 @@ const Register = () => {
     regionInfo2: "",
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    setFormData({ ...formData });
+    setFormData({
+      userEmail: localStorage.getItem("email"),
+      userPhone: localStorage.getItem("phoneNumber"),
+      userRole: `${role}`,
+      regionInfo1: localStorage.getItem("region"),
+      regionInfo2: "",
+    });
 
     axios
-      .post("/help/user/signin", formData)
+      .post("/signin", formData, {
+        headers: {
+          idToken: `${idToken}`,
+        },
+      })
       .then((response) => {
         console.log(response.data);
         alert("회원가입 완료되었습니다");
-        console.log(response);
+        localStorage.clear();
+        navigate("/");
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
         alert("회원가입 실패");
       });
   };

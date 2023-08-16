@@ -50,14 +50,25 @@ const LoginLoading = () => {
           const message = response.data.message;
           const arr = message.split(" ");
           localStorage.setItem("email", arr[3]);
+          localStorage.setItem("idToken", searchParams.get("code"));
+          navigate("/register");
         } else {
-          const accessToken = response.data.accessToken;
-          const refreshToken = response.data.refreshToken;
+          console.log(response.data);
+          const data = response.data;
+          const accessToken = data.tokenInfo.accessToken;
+          const refreshToken = data.tokenInfo.refreshToken;
           localStorage.setItem("accessToken", accessToken);
           localStorage.setItem("refreshToken", refreshToken);
+          if (data.userRole === "HELP") {
+            navigate("/hyozaparent");
+            localStorage.setItem("nickName", data.nickName);
+          } else {
+            navigate("/hyozason");
+            localStorage.setItem("nickName", data.nickName);
+            localStorage.setItem("region", data.regionInfo1);
+            localStorage.setItem("reward", data.rewardScore);
+          }
         }
-
-        navigate("/register");
       })
       .catch((error) => {
         console.log(error);
@@ -77,7 +88,7 @@ const LoginLoading = () => {
               btnFontSize="3vw"
               onClick={onClick}
             >
-              회원가입 계속하기
+              계속하기
             </TextBox>
           </Container>
         </Wrapper>
@@ -92,7 +103,7 @@ const LoginLoading = () => {
               btnFontSize="2vw"
               onClick={onClick}
             >
-              회원가입 계속하기
+              계속하기
             </TextBox>
           </Container>
         </Wrapper>
