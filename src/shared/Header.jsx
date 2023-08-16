@@ -99,23 +99,26 @@ const Header = () => {
 
         <Navigation>
           <ul>
-            {location.pathname === "/hyozason" ? (
-              <>
-                <li>{localStorage.getItem("nickName")}</li>
-                <li>{localStorage.getItem("reward")}P</li>
-                <li>
-                  <Button onClick={onClickLogout}>로그아웃</Button>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>{localStorage.getItem("nickName")}</li>
+            {localStorage.getItem("accessToken") === undefined}
+            {localStorage.getItem("accessToken") === undefined ? (
+              location.pathname === "/hyozason" ? (
+                <>
+                  <li>{localStorage.getItem("nickName")}</li>
+                  <li>{localStorage.getItem("reward")}P</li>
+                  <li>
+                    <Button onClick={onClickLogout}>로그아웃</Button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>{localStorage.getItem("nickName")}</li>
 
-                <li>
-                  <Button onClick={onClickLogout}>로그아웃</Button>
-                </li>
-              </>
-            )}
+                  <li>
+                    <Button onClick={onClickLogout}>로그아웃</Button>
+                  </li>
+                </>
+              )
+            ) : null}
           </ul>
         </Navigation>
       </Contents>
