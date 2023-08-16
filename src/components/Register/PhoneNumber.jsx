@@ -20,7 +20,6 @@ const PhoneInput = styled.input`
 
 const PhoneNumber = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
-
   const formatPhoneNumber = (value) => {
     const phoneNumber = value.replace(/[^\d]/g, "");
     let formattedNumber = "";
@@ -48,6 +47,7 @@ const PhoneNumber = () => {
     const { value } = e.target;
     const formattedPhoneNumber = formatPhoneNumber(value);
     setPhoneNumber(formattedPhoneNumber);
+    localStorage.setItem("phoneNumber", e.target.value);
   };
 
   return (

@@ -3,10 +3,11 @@ import styled, { createGlobalStyle } from "styled-components";
 import { Mobile, PC } from "../shared/MediaQuery";
 import PhoneNumber from "../components/Register/PhoneNumber";
 import Region from "../components/Register/Region";
+import axios from "axios";
 
 const text = `효자손을 사용하기 전에\n 본인의 역할과 지역을\n 선택해주세요.`;
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   height: 95vh;
   justify-content: center;
   display: flex;
@@ -92,7 +93,32 @@ const SubmitBtn = styled.button`
 const Register = () => {
   const [role, setRole] = useState("HELPER");
   const [region, setRegion] = useState("선택");
-  const [tel, setTel] = useState("");
+
+  const [formData, setFormData] = useState({
+    userEmail: localStorage.getItem("email"),
+    userPhone: localStorage.getItem("phoneNumber"),
+    userRole: `${role}`,
+    regionInfo1: localStorage.getItem("region"),
+    regionInfo2: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setFormData({ ...formData });
+
+    axios
+      .post("/help/user/signin", formData)
+      .then((response) => {
+        console.log(response.data);
+        alert("회원가입 완료되었습니다");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("회원가입 실패");
+      });
+  };
 
   const handleChecked = (e) => {
     setRole(e.target.value);
@@ -103,7 +129,7 @@ const Register = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper onSubmit={handleSubmit}>
       <Container>
         <Title>{text}</Title>
       </Container>
@@ -142,7 +168,7 @@ const Register = () => {
       >
         <SubTitle style={{ textAlign: "left" }}>지역 선택</SubTitle>
         <SelectBox>
-          <Select onChange={handleSelect}>
+          <Select onChange={handleSelect} disabled={role === "HELP"}>
             <option value="">ㄱㄴㄷ 선택</option>
             <option value="ㄱ">ㄱ</option>
             <option value="ㄴ">ㄴ</option>
@@ -152,11 +178,11 @@ const Register = () => {
             <option value="ㅇ">ㅇ</option>
             <option value="ㅈ">ㅈ</option>
           </Select>
-          <Region prop={region} />
+          <Region prop={region} role={role} />
         </SelectBox>
       </Container>
       <PhoneNumber />
-      <SubmitBtn>회원가입 완료</SubmitBtn>
+      <SubmitBtn type="submit">회원가입 완료</SubmitBtn>
     </Wrapper>
   );
 };
