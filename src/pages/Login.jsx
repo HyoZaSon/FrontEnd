@@ -82,29 +82,16 @@ const LoginButton = () => {
   return (
     <Container>
       <ButtonContainer>
-        <Mobile>
-          <GlobalStyle /> {/* 글로벌 스타일 적용 */}
-          <MobileContainer>
-            {" "}
-            {/* 모바일 화면에서만 적용 */}
-            <Title>효자손</Title>
-            <Statement>로그인 후 서비스를 이용하실 수 있습니다</Statement>{" "}
-            {/* 크기 조정된 문장 */}
-            <BasicButton onClick={() => window.open(KAKAO_AUTH_URL)} />{" "}
-            {/* 첫 번째 버튼 */}
-            <OtherButton /> {/* 두 번째 버튼 */}
-          </MobileContainer>
-        </Mobile>
-
-        <PC>
-          {/* PC 버전*/}
-          <GlobalStyle /> {/* 글로벌 스타일 적용 */}
+        <GlobalStyle /> {/* 글로벌 스타일 적용 */}
+        <MobileContainer>
+          {" "}
+          {/* 모바일 화면에서만 적용 */}
           <Title>효자손</Title>
-          <Statement>로그인 후 서비스를 이용하실 수 있습니다</Statement>
+          <Statement>로그인 후 서비스를 이용하실 수 있습니다</Statement>{" "}
+          {/* 크기 조정된 문장 */}
           <BasicButton onClick={() => window.open(KAKAO_AUTH_URL)} />{" "}
           {/* 첫 번째 버튼 */}
-          <OtherButton /> {/* 두 번째 버튼 */}
-        </PC>
+        </MobileContainer>
       </ButtonContainer>
     </Container>
   );
