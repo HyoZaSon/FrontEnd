@@ -1,7 +1,6 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../img/logo.svg";
-import { useEffect } from "react";
 import axios from "axios";
 
 const Wrapper = styled.header`
