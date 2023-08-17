@@ -49,7 +49,7 @@ function Modal({ isOpen, closeModal, content, isHelpLoading }) {
         <ModalText>
           {isHelpLoading ? <ModalHelp content={content} /> : <ModalLoading />}
         </ModalText>
-        <ModalBtn onClick={closeModal}>확인</ModalBtn>
+        <ModalBtn onClick={() => closeModal({ content })}>확인</ModalBtn>
       </ModalBox>
     </ModalContainer>
   );
