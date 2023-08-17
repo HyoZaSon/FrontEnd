@@ -59,6 +59,7 @@ const PhoneNumber = () => {
         onChange={handlePhoneInput}
         placeholder="전화번호 입력"
         maxLength="13"
+        required
       />
     </Container>
   );
