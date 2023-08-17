@@ -67,8 +67,10 @@ const Header = () => {
   const onClick = () => {
     if (location.pathname === "/hyozason") {
       navigate("/hyozason");
-    } else {
+    } else if (location.pathname === "/hyozaparent") {
       navigate("/hyozaparent");
+    } else {
+      navigate("/");
     }
   };
 
