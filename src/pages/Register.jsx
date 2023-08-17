@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import styled, { createGlobalStyle } from "styled-components";
-import { Mobile, PC } from "../shared/MediaQuery";
+import styled from "styled-components";
 import PhoneNumber from "../components/Register/PhoneNumber";
 import Region from "../components/Register/Region";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const text = `효자손을 사용하기 전에\n 본인의 역할과 지역을\n 선택해주세요.`;
 
@@ -91,6 +90,8 @@ const SubmitBtn = styled.button`
   font-size: 20px;
 `;
 
+localStorage.setItem("region", "마포구");
+
 const idToken = localStorage.getItem("idToken");
 
 const Register = () => {
@@ -98,10 +99,10 @@ const Register = () => {
   const [region, setRegion] = useState("선택");
 
   const [formData, setFormData] = useState({
-    userEmail: localStorage.getItem("email"),
-    userPhone: localStorage.getItem("phoneNumber"),
-    userRole: `${role}`,
-    regionInfo1: localStorage.getItem("region"),
+    userEmail: "",
+    userPhone: "",
+    userRole: "",
+    regionInfo1: "",
     regionInfo2: "",
   });
 
@@ -109,23 +110,24 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setFormData({
       userEmail: localStorage.getItem("email"),
       userPhone: localStorage.getItem("phoneNumber"),
       userRole: `${role}`,
       regionInfo1: localStorage.getItem("region"),
-      regionInfo2: "",
+      regionInfo2: "합정동",
     });
 
     axios
       .post("/signin", formData, {
         headers: {
-          idToken: `${idToken}`,
+          idToken: `Bearer ${idToken}`,
         },
       })
       .then((response) => {
         console.log(response.data);
-        alert("회원가입 완료되었습니다");
+        alert("회원가입이 완료되었습니다\n로그인해주세요!");
         localStorage.clear();
         navigate("/");
       })
@@ -136,6 +138,7 @@ const Register = () => {
   };
 
   const handleChecked = (e) => {
+    localStorage.setItem("role", e.target.value);
     setRole(e.target.value);
   };
 
@@ -183,7 +186,7 @@ const Register = () => {
       >
         <SubTitle style={{ textAlign: "left" }}>지역 선택</SubTitle>
         <SelectBox>
-          <Select onChange={handleSelect} disabled={role === "HELP"}>
+          <Select required onChange={handleSelect} disabled={role === "HELP"}>
             <option value="">ㄱㄴㄷ 선택</option>
             <option value="ㄱ">ㄱ</option>
             <option value="ㄴ">ㄴ</option>
