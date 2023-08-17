@@ -6,7 +6,7 @@ const Hyozason = () => {
 
   return (
     <>
-      <Title>00구의 도움 요청서</Title>
+      <Title>{localStorage.getItem("region")}의 도움 요청서</Title>
       <ButtonContainer>
         <Button onClick={() => navigate("/hyozason/:helpId")}>택시 예약</Button>
         <Button onClick={() => navigate("/hyozason/:helpId")}>버스 예약</Button>
@@ -22,7 +22,7 @@ const Hyozason = () => {
 const Title = styled.div`
   font-size: 26px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 100px;
 `;
 
 const ButtonContainer = styled.div`
@@ -40,7 +40,7 @@ const Button = styled.button`
   background-color: #519872;
   border: none;
   border-radius: 10px;
-  width: 500px;
+  width: 50vw;
   height: 80px;
   color: white;
   margin-bottom: 20px;
