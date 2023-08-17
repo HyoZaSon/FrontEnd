@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Select } from "../../pages/Register";
 
+localStorage.setItem("region", "마포구");
+
 const Regions = {
   선택: [""],
   ㄱ: [
@@ -34,6 +36,7 @@ const Region = ({ prop, role }) => {
         disabled={role === "HELP"}
         style={{ width: "100px" }}
         onChange={onChange}
+        required
       >
         <option>구 선택</option>
         {Regions[initial].map((region, idx) => (

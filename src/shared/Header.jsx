@@ -67,26 +67,31 @@ const Header = () => {
   const onClick = () => {
     if (location.pathname === "/hyozason") {
       navigate("/hyozason");
-    } else {
+    } else if (location.pathname === "/hyozaparent") {
       navigate("/hyozaparent");
+    } else {
+      navigate("/");
     }
   };
 
   const onClickLogout = () => {
-    axios
-      .get("/user/logout", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        localStorage.clear();
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axios
+    //   .get("/user/logout", {
+    //     headers: {
+    //       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //     localStorage.clear();
+    //     navigate("/");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    alert("로그아웃 되었습니다!");
+    localStorage.clear();
+    navigate("/");
   };
 
   return (
