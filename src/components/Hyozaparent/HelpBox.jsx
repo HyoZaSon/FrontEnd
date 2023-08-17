@@ -40,7 +40,7 @@ function getSuccess(position) {
       )
       .then((result) => {
         const address = result.data.documents[0].address;
-        localStorage.setItem("locationInfo", address.region_1depth_name);
+        localStorage.setItem("locationInfo", address.region_2depth_name);
         localStorage.setItem("region_2depth_name", address.region_2depth_name);
         localStorage.setItem("region_3depth_name", address.region_3depth_name);
         localStorage.setItem("mountain_yn", address.mountain_yn);
