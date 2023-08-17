@@ -99,9 +99,9 @@ const Hyozaparent = () => {
     }
   };
 
-  const acceptHelp = async (helpBoardId) => {
-    try {
-      const response = await axios.post(
+  const acceptHelp = () => {
+    axios
+      .post(
         `/help/helprequest/acceptHelp/${helpBoardId}`,
         {},
         {
@@ -110,24 +110,46 @@ const Hyozaparent = () => {
             Authorization: localStorage.getItem("accessToken"), // 실제 토큰 값을 사용해야 합니다.
           },
         }
-      );
-
-      if (response.status === 200) {
+      )
+      .then((response) => {
+        console.log(response);
         console.log("도움 수락 성공");
-      } else {
-        console.error("도움 수락 실패");
-      }
-    } catch (error) {
-      console.error("도움 수락 중 오류: ", error);
-    }
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("도움 수락 실패");
+      });
   };
+
+  // const acceptHelp = async (helpBoardId) => {
+  //   try {
+  //     const response = await axios.post(
+  //       `/help/helprequest/acceptHelp/${helpBoardId}`,
+  //       {},
+  //       {
+  //         withCredentials: true,
+  //         headers: {
+  //           Authorization: localStorage.getItem("accessToken"), // 실제 토큰 값을 사용해야 합니다.
+  //         },
+  //       }
+  //     );
+
+  //     if (response.status === 200) {
+  //       console.log("도움 수락 성공");
+  //     } else {
+  //       console.error("도움 수락 실패");
+  //     }
+  //   } catch (error) {
+  //     console.error("도움 수락 중 오류: ", error);
+  //   }
+  // };
 
   return (
     <>
       <Mobile>
         <Wrapper>
           <button onClick={requestHelp}>도움 요청</button>
-          <button onClick={() => acceptHelp(helpBoardId)}>도움 수락</button>
+          <button onClick={acceptHelp}>도움 수락</button>
           <HelpBox
             HfontSize={"5vw"}
             btnWidth={"70vw"}
@@ -138,6 +160,8 @@ const Hyozaparent = () => {
       </Mobile>
       <PC>
         <Wrapper>
+          <button onClick={requestHelp}>도움 요청</button>
+          <button onClick={acceptHelp}>도움 수락</button>
           <HelpBox
             HfontSize={"3vw"}
             btnWidth={"20vw"}
