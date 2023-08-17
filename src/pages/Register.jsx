@@ -99,11 +99,11 @@ const Register = () => {
   const [region, setRegion] = useState("선택");
 
   const [formData, setFormData] = useState({
-    userEmail: "",
-    userPhone: "",
-    userRole: "",
-    regionInfo1: "",
-    regionInfo2: "",
+    userEmail: localStorage.getItem("email"),
+    userPhone: localStorage.getItem("phoneNumber"),
+    userRole: `${role}`,
+    regionInfo1: localStorage.getItem("region"),
+    regionInfo2: "합정동",
   });
 
   const navigate = useNavigate();
@@ -111,16 +111,16 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setFormData({
+    const updatedFormData = {
       userEmail: localStorage.getItem("email"),
       userPhone: localStorage.getItem("phoneNumber"),
       userRole: `${role}`,
       regionInfo1: localStorage.getItem("region"),
       regionInfo2: "합정동",
-    });
+    };
 
     axios
-      .post("/signin", formData, {
+      .post("/signin", updatedFormData, {
         headers: {
           idToken: `Bearer ${idToken}`,
         },
