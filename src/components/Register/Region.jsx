@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Select } from "../../pages/Register";
 
-localStorage.setItem("region", "마포구");
+//localStorage.setItem("region", "마포구");
 
 const Regions = {
   선택: [""],
