@@ -5,7 +5,8 @@ import LoginOtherImage from "../components/LoginOther.jpg"; // 두 번째 버튼
 import GlobalStyle from "../shared/GlobalStyle";
 import { Mobile, PC } from "../shared/MediaQuery";
 
-const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}&response_type=code`;
+//const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}&response_type=code`;
+const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=5151f859767070b485a0f46130712469&redirect_uri=http://223.130.139.203:3000/help/oauth&response_type=code`;
 
 // 배경을 포함한 컨테이너 스타일
 const Container = styled.div`
