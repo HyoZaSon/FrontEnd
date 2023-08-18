@@ -87,6 +87,7 @@ const Evaluation = () => {
       })
       .catch((error) => {
         console.log(error);
+        navigate("/hyozaparent");
       });
   };
 
