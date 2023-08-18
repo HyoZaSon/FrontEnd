@@ -3,6 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Mobile, PC } from "../shared/MediaQuery";
+import axios from "axios";
 
 const ARRAY = [0, 1, 2, 3, 4];
 
@@ -72,18 +73,21 @@ const Evaluation = () => {
     setClicked(clickStates);
   };
 
-  useEffect(() => {
-    // 별점 click 하면 review를 등록한다
-    sendReview();
-  }, [clicked]);
-
   const navigate = useNavigate();
-  const sendReview = () => {
-    let score = clicked.filter(Boolean).length;
-    console.log(score);
-  };
   const onClick = () => {
-    navigate("/hyozaparent");
+    let score = clicked.filter(Boolean).length;
+    const url = `/help/reward?rating=${score}`;
+    axios
+      .get(url, {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      })
+      .then((response) => {
+        console.log(response);
+        navigate("/hyozaparent");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

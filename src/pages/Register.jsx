@@ -90,7 +90,7 @@ const SubmitBtn = styled.button`
   font-size: 20px;
 `;
 
-localStorage.setItem("region", "마포구");
+//localStorage.setItem("region", "마포구");
 
 const idToken = localStorage.getItem("idToken");
 
