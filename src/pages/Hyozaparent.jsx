@@ -149,8 +149,6 @@ const Hyozaparent = () => {
     <>
       <Mobile>
         <Wrapper>
-          <button onClick={requestHelp}>도움 요청</button>
-          <button onClick={acceptHelp}>도움 수락</button>
           <HelpBox
             HfontSize={"5vw"}
             btnWidth={"70vw"}
@@ -161,8 +159,6 @@ const Hyozaparent = () => {
       </Mobile>
       <PC>
         <Wrapper>
-          <button onClick={requestHelp}>도움 요청</button>
-          <button onClick={acceptHelp}>도움 수락</button>
           <HelpBox
             HfontSize={"3vw"}
             btnWidth={"20vw"}

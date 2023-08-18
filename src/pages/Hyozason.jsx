@@ -9,54 +9,19 @@ const Hyozason = () => {
   const [userData, setUserData] = useState(null);
   const [helpArticles, setHelpArticles] = useState([]);
 
-  useEffect(() => {
-    const region_2depth_name = localStorage.getItem("region");
-
-    axios
-      .get(`/help/read?region_2depth_name=${region_2depth_name}`)
-      .then((response) => {
-        //console.log(response.data);
-        setHelpArticles(response.data);
-        setUserData(response.data.user);
-      })
-      .catch((error) => {
-        console.error("Error fetching help articles:", error);
-      });
-  }, []);
-
-  const filteredHelpArticles = helpArticles.filter(
-    (article) => article.locationInfo === userData.regionInfo1
-  );
+  const location = localStorage.getItem("region");
 
   return (
     <>
-      <Title>
-        {userData ? `${userData.regionInfo1}구의 도움 요청서` : "Loading..."}
-      </Title>
-      <Mobile>
-        <ButtonContainer>
-          {filteredHelpArticles.map((article) => (
-            <Button
-              key={article.helpId}
-              onClick={() => navigate(`/hyozason/${article.helpId}`)}
-            >
-              {article.helpName}
-            </Button>
-          ))}
-        </ButtonContainer>
-      </Mobile>
-      <PC>
-        <ButtonContainer>
-          {filteredHelpArticles.map((article) => (
-            <Button
-              key={article.helpId}
-              onClick={() => navigate(`/hyozason/${article.helpId}`)}
-            >
-              {article.helpName}
-            </Button>
-          ))}
-        </ButtonContainer>
-      </PC>
+      <Title>{location}의 도움 요청서</Title>
+      <ButtonContainer>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>택시 예약</Button>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>버스 예약</Button>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>기차 예약</Button>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>버스 예약</Button>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>택시 예약</Button>
+        <Button onClick={() => navigate("/hyozason/:helpId")}>기차 예약</Button>
+      </ButtonContainer>
     </>
   );
 };
