@@ -129,7 +129,7 @@ const Register = () => {
         console.log(response.data);
         alert("회원가입이 완료되었습니다\n로그인해주세요!");
         localStorage.clear();
-        navigate("/");
+        navigate("/FrontEnd");
       })
       .catch((error) => {
         console.log(error);
