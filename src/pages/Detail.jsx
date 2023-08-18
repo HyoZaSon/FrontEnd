@@ -16,12 +16,14 @@ const Detail = () => {
     navigate("/hyozason");
   };
 
+  const nickName = localStorage.getItem("nickName");
+
   return (
     <Wrapper>
       <Container>
         <TitleContainer>
           <Title>택시 예약</Title>
-          <User>000님</User>
+          <User>{nickName}</User>
         </TitleContainer>
 
         <Image src={MapImg} alt="map" />
