@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   margin-top: 30px;
 `;
 
-const BASE_URL = "http://localhost:8082";
+const BASE_URL = "http://223.130.139.203:8082";
 const Hyozaparent = () => {
   const [eventSource, setEventSource] = useState(null);
   const [helpBoardId, setHelpId] = useState(null);
