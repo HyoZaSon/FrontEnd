@@ -13,9 +13,7 @@ const Hyozason = () => {
     const region_2depth_name = localStorage.getItem("region");
 
     axios
-      .get(
-        `http://localhost:8082/help/read?region_2depth_name=${region_2depth_name}`
-      )
+      .get(`/help/read?region_2depth_name=${region_2depth_name}`)
       .then((response) => {
         //console.log(response.data);
         setHelpArticles(response.data);
