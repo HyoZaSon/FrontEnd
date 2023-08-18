@@ -10,7 +10,7 @@ const Hyozason = () => {
   const [helpArticles, setHelpArticles] = useState([]);
 
   useEffect(() => {
-    const region_2depth_name = "USER_REGION";
+    const region_2depth_name = localStorage.getItem("region");
 
     axios
       .get(
