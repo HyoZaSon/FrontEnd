@@ -91,6 +91,7 @@ const Hyozaparent = () => {
       if (response.status === 200) {
         console.log("도움 요청 성공");
         setHelpId(response.data.helpBoardId);
+        localStorage.setItem("helpBoardId", response.data.helpBoardId);
       } else {
         console.error("도움 요청 실패");
       }
@@ -102,7 +103,7 @@ const Hyozaparent = () => {
   const acceptHelp = () => {
     axios
       .post(
-        `/help/helprequest/acceptHelp/${helpBoardId}`,
+        `/help/helprequest/acceptHelp/${localStorage.getItem("helpBoardId")}`,
         {},
         {
           withCredentials: true,
