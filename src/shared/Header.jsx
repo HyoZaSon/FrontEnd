@@ -70,7 +70,7 @@ const Header = () => {
     } else if (location.pathname === "/hyozaparent") {
       navigate("/hyozaparent");
     } else {
-      navigate("/");
+      navigate("/FrontEnd");
     }
   };
 
@@ -91,7 +91,7 @@ const Header = () => {
     //   });
     alert("로그아웃 되었습니다!");
     localStorage.clear();
-    navigate("/");
+    navigate("/FrontEnd");
   };
 
   return (

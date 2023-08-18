@@ -7,7 +7,7 @@ const Router = () => {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/FrontEnd" element={<Login />} />
         <Route path="/help/oauth" element={<LoginLoading />} />
         <Route path="/hyozason" element={<Hyozason />} />
         <Route path="/hyozason/:helpId" element={<Detail />} />
