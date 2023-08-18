@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "event-source-polyfill": "^1.0.31",
+    "gh-pages": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
@@ -24,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,5 +47,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8082"
+  "proxy": "http://223.130.139.203:8082",
+  "homepage": "https://HyoZaSon.github.io/FrontEnd"
 }
